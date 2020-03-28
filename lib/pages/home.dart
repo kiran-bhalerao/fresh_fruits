@@ -2,10 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:fresh_fruits/models/fruit.dart';
+import 'package:fresh_fruits/pages/details.dart';
 import 'package:fresh_fruits/widgets/fruit_card.dart';
 import 'package:fresh_fruits/widgets/fruit_tab_item.dart';
 
 class HomePage extends StatefulWidget {
+  static String routeName = '/HomePage';
+
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -115,8 +118,19 @@ class _HomePageState extends State<HomePage>
               ),
               prefixIcon: Icon(
                 Icons.search,
-                color: Colors.grey.withOpacity(0.6),
+                color: Theme.of(context).primaryColor,
               ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: Text(
+            'Recommended',
+            style: TextStyle(
+              color: Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
@@ -124,9 +138,15 @@ class _HomePageState extends State<HomePage>
           height: max(height * 0.51, 300),
           padding: const EdgeInsets.fromLTRB(0, 16, 0, 16),
           child: PageView.builder(
-            itemBuilder: (ctx, index) => FruitCard(
-              fruit: fruitList[index],
-              index: index,
+            itemBuilder: (ctx, index) => InkWell(
+              child: FruitCard(
+                fruit: fruitList[index],
+                index: index,
+              ),
+              onTap: () => Navigator.of(context).pushNamed(
+                DetailsPage.routeName,
+                arguments: fruitList[index],
+              ),
             ),
             controller: _pageController,
             itemCount: fruitList.length,

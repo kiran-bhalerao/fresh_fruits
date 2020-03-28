@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fresh_fruits/pages/details.dart';
 import 'package:fresh_fruits/pages/home.dart';
 
 void main() => runApp(MyApp());
@@ -15,6 +16,10 @@ class MyApp extends StatelessWidget {
         primaryColor: Color(0xFF42ce6c),
       ),
       home: HomePage(),
+      routes: {
+        HomePage.routeName: (ctx) => HomePage(),
+        DetailsPage.routeName: (ctx) => DetailsPage()
+      },
     );
   }
 }

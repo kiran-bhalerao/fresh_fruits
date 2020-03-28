@@ -38,9 +38,12 @@ class FruitCard extends StatelessWidget {
                   children: <Widget>[
                     Padding(
                       padding: EdgeInsets.only(top: height * 0.02),
-                      child: Image.asset(
-                        fruit.img,
-                        scale: min((2500 / height), 5),
+                      child: Hero(
+                        tag: '${fruit.name}-image',
+                        child: Image.asset(
+                          fruit.img,
+                          scale: min((2500 / height), 5),
+                        ),
                       ),
                     ),
                     Column(
